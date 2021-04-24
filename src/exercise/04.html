@@ -6,6 +6,8 @@
   <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
 
@@ -47,27 +49,59 @@
     //     <Message2>Goodbye World</Message2>
     // )
     // extra credit 3
+    // const PropTypes = {
+    //   string(props, propName, componentName) {
+    //     if (typeof props[propName] !== 'string') {
+    //       return new Error(`Given input for ${propName} in ${componentName} is not a valid string`)
+    //     }
+    //   }
+    // }
+    // const Message3 = ({subject, greeting})=>{
+    //   return <div className='message'>{greeting}, {subject}</div>
+    // }
+    // Message3.propTypes = {
+    //   subject: PropTypes.string,
+    //   greeting: PropTypes.string,
+    // }
+    // let element2 = (
+    //   <div className="container">
+    //     <Message3 subject='World' greeting='Hello'/>
+    //     <Message3 subject='World' greeting='Goodbye'/>
+    //   </div>
+    // )
 
-    const PropTypes = {
-      string(props, propName, componentName) {
-        if (typeof props[propName] !== 'string') {
-          return new Error(`Given input for ${propName} in ${componentName} is not a valid string`)
-        }
-      }
-    }
-    const Message3 = ({subject, greeting})=>{
+
+    // extra credit 4
+    // const Message4 = ({subject, greeting})=>{
+    //   return <div className='message'>{greeting}, {subject}</div>
+    // }
+    // console.log(PropTypes)
+    // Message4.propTypes = {
+    //   subject:PropTypes.string.isRequired,
+    //   greeting: PropTypes.string.isRequired
+    // }
+    // let element2 = (
+    //   <div className="container">
+    //     <Message4 subject={'Hello'} greeting='World'/>
+    //     <Message4 subject='World' greeting='Goodbye'/>
+    //   </div>
+    // )
+    // extra credit 5
+    const Message5 = ({subject, greeting})=>{
       return <div className='message'>{greeting}, {subject}</div>
     }
-    Message3.propTypes = {
-      subject: PropTypes.string,
-      greeting: PropTypes.string,
+    console.log(PropTypes)
+    Message5.propTypes = {
+      subject:PropTypes.string.isRequired,
+      greeting: PropTypes.string.isRequired
     }
     let element2 = (
-      <div className="container">
-        <Message3 subject='World' greeting='Hello'/>
-        <Message3 subject='World' greeting='Goodbye'/>
-      </div>
-    )
+      <React.Fragment>
+        <Message5 subject={'Hello'} greeting='World'/>
+        <Message5 subject='World' greeting='Goodbye'/>
+      </React.Fragment>
+
+      )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
     ReactDOM.render(element2, document.getElementById('root'))

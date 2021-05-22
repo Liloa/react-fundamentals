@@ -18,17 +18,91 @@ function UsernameForm({onSubmitUsername}) {
 
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
+
+  // Exercies
+  // const handleSubmit = (event)=>{
+  //   event.preventDefault();
+  //   alert(event.target.elements[0].value)
+  // }
+  //
+  // return (
+  //   <form  onSubmit={handleSubmit}>
+  //     <div>
+  //       <label>Username:</label>
+  //       <input type="text" />
+  //     </div>
+  //     <button type="submit">Submit</button>
+  //   </form>
+  // )
+
+  // extracredit 1
+  // const inputRef = React.useRef(null);
+  // const handleSubmit = (event)=>{
+  //   event.preventDefault();
+  //   if(inputRef.current && inputRef.current.value){
+  //     alert(inputRef.current.value)
+  //   }
+  // }
+  // return (
+  //   <form  onSubmit={handleSubmit}>
+  //     <div>
+  //       <label>Username:</label>
+  //       <input ref={inputRef} type="text" />
+  //     </div>
+  //     <button type="submit">Submit</button>
+  //   </form>
+  // )
+
+  // extracredit 2
+  // const [errorMessage, setErrorMessage] = React.useState(null)
+  // const inputRef = React.useRef(null);
+  // const handleSubmit = (event)=>{
+  //   event.preventDefault();
+  //
+  //   if(inputRef.current && inputRef.current.value){
+  //     alert(inputRef.current.value)
+  //   }
+  // }
+  // const handleChange = (event)=>{
+  //   const value = event.target.value
+  //   if(value || value===undefined){
+  //     const isValid = value === value.toLowerCase()
+  //     setErrorMessage(isValid ? null : 'Username must be lower case')
+  //   }
+  // }
+  // return (
+  //   <form  onSubmit={handleSubmit}>
+  //     <div>
+  //       <label>Username:</label>
+  //       <input onChange={handleChange} ref={inputRef} type="text" />
+  //     </div>
+  //     {errorMessage}
+  //     <button disabled={!!errorMessage} type="submit">Submit</button>
+  //   </form>
+  // )
+  // extracredit 3
+  const [username, setUsername] = React.useState(null)
   const handleSubmit = (event)=>{
     event.preventDefault();
-    alert(event.target.elements[0].value)
+
+    if(username){
+      alert(username)
+    }
+  }
+  const handleChange = (event)=>{
+    const value = event.target.value
+    if(value){
+
+      setUsername(value.toLowerCase())
+    }
   }
   return (
     <form  onSubmit={handleSubmit}>
       <div>
         <label>Username:</label>
-        <input type="text" />
+        <input onChange={handleChange} value={username} type="text" />
       </div>
-      <button type="submit">Submit</button>
+      <button disabled={!username} type="submit">Submit</button>
     </form>
   )
 }
